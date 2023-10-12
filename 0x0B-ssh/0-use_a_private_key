@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#connects to sever via ssh and primarykey
+
+ssh -i ~/.ssh/school ubuntu@100.26.10.68

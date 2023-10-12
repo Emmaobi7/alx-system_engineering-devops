@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+#This script displays text forever, and something else when a SIGTERM signal is sent to it
+
+
+
+
+
+
+
+
+
+
+
+
+
+while true
+do
+	echo "To infinity and beyond"
+	trap 'echo "I am invincible!!!"' SIGTERM
+	sleep 2
+done
+

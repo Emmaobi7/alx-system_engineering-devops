@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# automates installation and configuration of nginx
+
+apt update
+apt install -y nginx
+
+rm /etc/nginx/sites-enabled/default
+ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+service nginx restart

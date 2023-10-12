@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# install HAproxy and configure nginx
+
+apt update
+
+apt-get install --no-install-recommends -y software-properties-common
+add-apt-repository ppa:vbernat/haproxy-2.0
+
+apt-get install -y haproxy=2.0.\*
+
+server_config="
+frontend http
+  bind *:80
+  mode http
+  default_backend web-backend
+
+backend web-backend
+  balance roundrobin
+  server 136677-web-01 100.26.10.68:80 check
+  server 136677-web-02 34.232.52.36:80 check
+"
+
+echo "$server_config" >> /etc/haproxy/haproxy.cfg
+
+sudo haproxy -c -f /etc/haproxy/haproxy.cfg
+
+sudo service haproxy restart

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# shows listening sockeks
+# shows PID ofn program to each socket
+
+netstat -ap

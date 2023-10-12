@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# secure copy
+
+if [ $# -lt 1 ]
+then
+echo "usage: send_file filename"
+fi
+
+scp -o StrictHostkeyChecking=no -i ~/.ssh/id_rsa $1 ubuntu@34.232.52.36:~/
+

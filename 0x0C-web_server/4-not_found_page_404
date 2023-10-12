@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# automates installation and configuration of nginx
+
+apt update
+apt install -y nginx
+
+echo "Hello World!" > /var/www/html/index.nginx-debian.html
+echo "Ceci n'est pas une page" > /usr/share/nginx/html/c404.html
+
+server_config="
+server {
+	listen 80;
+	listen [::]:80 default_server;
+
+	root /var/www/html;
+	index index.nginx-debian.html;
+
+
+	error_page 404 /c404.html;
+	location = /c404.html {
+		root /usr/share/nginx/html;
+		internal;
+	}
+}"
+
+echo "$server_config" > /etc/nginx/sites-available/default
+
+service nginx restart
